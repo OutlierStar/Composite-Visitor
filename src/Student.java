@@ -10,6 +10,9 @@ public class Student implements Component {
         this.score = score;
     }
 
+    public Student() {
+    }
+
     public String getId() {
         return id;
     }

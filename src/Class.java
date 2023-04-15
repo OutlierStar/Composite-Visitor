@@ -9,6 +9,9 @@ public class Class implements Component {
         this.name = name;
     }
 
+    public Class() {
+    }
+
     public void addStudent(Component student) {
         students.add(student);
     }

@@ -9,6 +9,10 @@ public class Grade implements Component {
         this.name = name;
     }
 
+    public Grade() {
+    }
+
+
     public void addClass(Component cls) {
         classes.add(cls);
     }
