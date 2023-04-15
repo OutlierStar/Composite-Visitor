@@ -7,16 +7,19 @@ public class PrintVisitor implements Visitor {
 
     @Override
     public void visit(Grade grade) {
-        sb.append(grade.getName()).append("\n");
+        if (sb.length()>0) {
+            sb.append("\n");
+        }
+        sb.append(grade.getName());
     }
 
     @Override
     public void visit(Class cls) {
-        sb.append("--").append(cls.getName()).append("(").append(cls.getNumberOfStudents()).append(")").append("\n");
+        sb.append("\n").append("--").append(cls.getName()).append("(").append(cls.getNumberOfStudents()).append(")");
     }
 
     @Override
     public void visit(Student student) {
-        sb.append("----").append(student.getId()).append(",").append(student.getName()).append(",").append(student.getScore()).append(",").append(student.getResult()).append("\n");
+        sb.append("\n").append("----").append(student.getId()).append(",").append(student.getName()).append(",").append(student.getScore()).append(",").append(student.getResult());
     }
 }

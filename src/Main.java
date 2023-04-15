@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +37,7 @@ public class Main {
         for (Grade grade : grades) {
             grade.accept(visitor); // 接受访问者对象，输出结果
         }
-        System.out.println(visitor.getResult());
+        System.out.print(visitor.getResult());
 
         // ...
     }
@@ -107,22 +105,22 @@ public class Main {
     public static Grade[] parseInputs(String strInput) {
 
         // 提取grade的正则
-        String pattern = "(\\w+):(\\{\\w+:\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\}(,\\w+:\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\})*\\})";
-        // (,[\w+:{\w+-\w+-\w+(,\w+-\w+-\w+)*}]*)
+        // String pattern = "(\\w+):((\\{\\w+:\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\})*(,\\w+:\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\})*\\})";
+        String pattern = "(\\w+):(\\{(\\w+:\\{(\\w+-\\w+-\\w+)*(,\\w+-\\w+-\\w+)*\\}(,\\w+:\\{(\\w+-\\w+-\\w+)*(,\\w+-\\w+-\\w+)*\\})*)*\\})";
 
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(strInput);
         List<Grade> arrayList = new ArrayList<Grade>();
         while (m.find()) {
             Grade one = new Grade(m.group(1));
-            for (Class class1 : parseClass(m.group(2))) {
+            
+            try {
+                for (Class class1 : parseClass(m.group(2))) {
                 one.addClass(class1);
             }
-            try {
-                
             } catch (Exception e) {
                 // TODO: handle exception
-                System.out.println("ERROR: parseInputs error");
+                // System.out.println("ERROR: parseInputs error");
             }
             arrayList.add(one);
         }
@@ -133,7 +131,8 @@ public class Main {
 
     public static Class[] parseClass(String strInput) {
         // 提取class的正则
-        String pattern = "(\\w+):(\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\})";
+        // String pattern = "(\\w+):((\\{\\w+-\\w+-\\w+)*(,\\w+-\\w+-\\w+)*\\})";
+        String pattern = "(\\w+):(\\{(\\w+-\\w+-\\w+)*(,\\w+-\\w+-\\w+)*\\})";
 
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(strInput);
@@ -146,7 +145,7 @@ public class Main {
                 }
             } catch (Exception e) {
                 // TODO: handle exception
-                System.out.println("ERROR: parseClass error");
+                // System.out.println("ERROR: parseClass error");
             }
             arrayList.add(one);
         }
