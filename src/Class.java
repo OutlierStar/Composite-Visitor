@@ -28,7 +28,7 @@ public class Class implements Component {
             student.accept(visitor);
         }
     }
-
+    
     public int getNumberOfStudents() {
         return students.size();
     }
