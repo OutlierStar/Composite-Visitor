@@ -103,7 +103,7 @@ public class Main {
 
     /* 通过分析strInput字符串创建年级、班级、学生对象并将其组合起来 */
     public static Grade[] parseInputs(String strInput) {
-
+        strInput = strInput.replace(" ", "");
         // 提取grade的正则
         // String pattern = "(\\w+):((\\{\\w+:\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\})*(,\\w+:\\{\\w+-\\w+-\\w+(,\\w+-\\w+-\\w+)*\\})*\\})";
         String pattern = "(\\w+):(\\{(\\w+:\\{(\\w+-\\w+-\\w+)*(,\\w+-\\w+-\\w+)*\\}(,\\w+:\\{(\\w+-\\w+-\\w+)*(,\\w+-\\w+-\\w+)*\\})*)*\\})";
